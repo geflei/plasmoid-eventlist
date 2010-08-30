@@ -203,8 +203,6 @@ QGraphicsWidget *EventApplet::graphicsWidget()
         m_view->viewport()->setAutoFillBackground(false);
         m_view->viewport()->setPalette( p );
 
-        connect(m_view, SIGNAL(doubleClicked(const QModelIndex &)),
-                SLOT(slotOpenEvent(const QModelIndex &)));
         connect(m_view, SIGNAL(tooltipUpdated(QString)),
                 SLOT(slotUpdateTooltip(QString)));
 
@@ -475,7 +473,7 @@ void EventApplet::configAccepted()
     int finishedTodoOpacity = m_colorConfigUi.finishedTodoOpacity->value();
     cg.writeEntry("FinishedTodoColor", m_finishedTodoBg.name());
     cg.writeEntry("FinishedTodoOpacity", finishedTodoOpacity);
-    m_todoBg.setAlphaF(finishedTodoOpacity/100.0);
+    m_finishedTodoBg.setAlphaF(finishedTodoOpacity/100.0);
     m_colors.insert(finishedTodoColorPos, m_finishedTodoBg);
 
     m_model->settingsChanged(m_urgency, m_birthdayUrgency, m_colors);
